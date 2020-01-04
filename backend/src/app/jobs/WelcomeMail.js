@@ -15,22 +15,18 @@ class WelcomeMail {
       price,
     } = data;
 
-    try {
-      await Mail.sendMail({
-        to: `${studentName} <${studentEmail}>`,
-        subject: 'Matrícula registrada',
-        template: 'enrolment',
-        context: {
-          studentName,
-          start_date,
-          end_date,
-          planTitle,
-          price,
-        },
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    await Mail.sendMail({
+      to: `${studentName} <${studentEmail}>`,
+      subject: 'Matrícula registrada',
+      template: 'enrolment',
+      context: {
+        studentName,
+        start_date,
+        end_date,
+        planTitle,
+        price,
+      },
+    });
   }
 }
 
