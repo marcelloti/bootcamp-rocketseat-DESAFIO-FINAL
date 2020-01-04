@@ -1,0 +1,132 @@
+import React, { useEffect, useState, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { withNavigationFocus } from 'react-navigation';
+import { parseISO, formatRelative } from 'date-fns';
+import pt from 'date-fns/locale/pt';
+import { TouchableOpacity, Image } from 'react-native';
+import api from '~/services/api';
+import { signOut, signInRequest } from '~/store/modules/auth/actions';
+import Background from '~/components/Background';
+import logoHeader from '~/assets/logo-header.png';
+
+import {
+  Container,
+  HelpOrderContainer,
+  HelpOrderButton,
+  HelpOrderTitle,
+  DivButton,
+  HelpOrderStatus,
+  HelpOrderStatusText,
+  HelpOrderTime,
+  HelpOrderQuestion,
+  HelpOrderQuestionText,
+  List,
+} from './styles';
+
+function HelpOrdersList({ navigation }) {
+  const dispatch = useDispatch();
+  const [helpOrders, setHelpOrders] = useState([]);
+  const studentid = useSelector(state => state.auth.studentid);
+
+  /*
+  function handleLogout() {
+    dispatch(signOut());
+  }
+  handleLogout();
+  */
+
+  function openResponse(helpOrder) {
+    navigation.navigate('HelpOrderInfo', {
+      helpOrder,
+    });
+  }
+
+  const formatStatus = useCallback(helporder => {
+    let responseStatus = 'Sem resposta';
+    if (helporder.answer !== null) {
+      responseStatus = 'Respondido';
+    }
+    return responseStatus;
+  }, []);
+
+  const loadHelpOrders = useCallback(async () => {
+    const response = await api.get(`students/${studentid}/help-orders`);
+    const helpordersArray = response.data.map(helporder => {
+      const helpOrderFormatted = {
+        ...helporder,
+        formattedStatus: formatStatus(helporder),
+        formattedTime: formatRelative(
+          parseISO(helporder.created_at),
+          new Date(),
+          {
+            locale: pt,
+            addSuffix: true,
+          }
+        ),
+      };
+
+      return helpOrderFormatted;
+    });
+
+    setHelpOrders(helpordersArray);
+  }, [formatStatus, studentid]);
+
+  useEffect(() => {
+    loadHelpOrders();
+  }, [loadHelpOrders, studentid]);
+
+  async function sendHelpOrderPage() {
+    navigation.navigate('SendHelpOrder', {
+      studentid,
+    });
+  }
+
+  return (
+    <Background>
+      <Container>
+        <DivButton>
+          <HelpOrderButton onPress={sendHelpOrderPage}>
+            Novo pedido de auxílio
+          </HelpOrderButton>
+        </DivButton>
+        <List
+          data={helpOrders}
+          keyExtractor={item => String(item.id)}
+          renderItem={({ item }) => (
+            <HelpOrderContainer>
+              <TouchableOpacity
+                onPress={() => {
+                  openResponse(item);
+                }}
+              >
+                <HelpOrderTitle>
+                  <HelpOrderStatus>
+                    <Icon
+                      name="check-circle"
+                      size={20}
+                      color={item.answer ? '#42cb59' : '#999'}
+                    />
+                    <HelpOrderStatusText answered={!!item.answer}>
+                      {item.formattedStatus}
+                    </HelpOrderStatusText>
+                  </HelpOrderStatus>
+                  <HelpOrderTime>{item.formattedTime}</HelpOrderTime>
+                </HelpOrderTitle>
+                <HelpOrderQuestion>
+                  <HelpOrderQuestionText>{item.question}</HelpOrderQuestionText>
+                </HelpOrderQuestion>
+              </TouchableOpacity>
+            </HelpOrderContainer>
+          )}
+        />
+      </Container>
+    </Background>
+  );
+}
+
+HelpOrdersList.navigationOptions = () => ({
+  headerTitle: <Image resizeMode="center" source={logoHeader} />,
+});
+
+export default withNavigationFocus(HelpOrdersList);
