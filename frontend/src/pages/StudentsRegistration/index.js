@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
@@ -38,8 +38,19 @@ const schema = Yup.object().shape({
 
 export default function StudentsRegistration() {
   const dispatch = useDispatch();
-
   const studentData = useSelector(state => state.student.studentData);
+
+  const [pageTitle, setPageTitle] = React.useState('Edição de aluno');
+
+  const loadTitle = useCallback(async () => {
+    if (studentData === null || typeof studentData.id === 'undefined') {
+      setPageTitle('Cadastro de aluno');
+    }
+  }, [studentData]);
+
+  useState(() => {
+    loadTitle();
+  }, []);
 
   function voltarBtn() {
     history.goBack(-1);
@@ -51,7 +62,7 @@ export default function StudentsRegistration() {
 
   function handleSubmit({ name, email, age, weight, height }) {
     // Create action
-    if (studentData.id === 'undefined') {
+    if (studentData === null || typeof studentData.id === 'undefined') {
       dispatch(studentCreateRequest({ name, email, age, weight, height }));
     }
 
@@ -65,7 +76,7 @@ export default function StudentsRegistration() {
   return (
     <Container>
       <Header>
-        <PageTitle>Cadastro de alunos</PageTitle>
+        <PageTitle>{pageTitle}</PageTitle>
         <ActionDiv>
           <button
             className="voltarBtn"

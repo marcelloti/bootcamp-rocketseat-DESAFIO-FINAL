@@ -65,7 +65,11 @@ export const ActionDiv = styled.div`
     background: #fff url(${searchImg}) no-repeat 10px center;
     padding-left: 32px;
     border: 1px solid #ddd;
-    color: #999;
+    color: #666;
+
+    &::placeholder {
+      color: #999;
+    }
   }
 `;
 

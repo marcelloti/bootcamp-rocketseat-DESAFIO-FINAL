@@ -8,7 +8,7 @@ module.exports = {
         {
           name: 'Administrador',
           email: 'admin@gympoint.com',
-          password_hash: bcrypt.hashSync('123456', 8),
+          password_hash: bcrypt.hashSync('123456789', 8),
           created_at: new Date(),
           updated_at: new Date(),
         },
@@ -19,6 +19,6 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     const Op = Sequelize.Op
-    return queryInterface.bulkDelete('users', {email: {[Op.in]: ['admin@gympoint.com']}}, {})
+    return queryInterface.bulkDelete('users', { email: { [Op.in]: ['admin@gympoint.com'] } }, {})
   },
 };

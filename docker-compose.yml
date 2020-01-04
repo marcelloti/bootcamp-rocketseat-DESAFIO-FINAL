@@ -1,0 +1,26 @@
+version: "3"
+services:
+  redis:
+    container_name: "redis_bootcamp_desafio_final"
+    image: redis:alpine
+    command: redis-server
+    ports:
+      - "6379:6379"
+    network_mode: "host"
+    volumes:
+      - "./developer/redis :/data"
+
+  postgres:
+    container_name: "postgres_bootcamp_desafio_final"
+    image: postgres:11
+    environment:
+      POSTGRES_DB: "gympoint"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./postgres_data:/var/lib/postgresql/data"
+    tty: true
+    stdin_open: true
+    network_mode: "host"

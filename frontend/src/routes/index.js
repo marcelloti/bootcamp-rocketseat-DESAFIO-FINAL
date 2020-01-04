@@ -3,15 +3,12 @@ import { Switch } from 'react-router-dom';
 import Route from './Route';
 
 import SignIn from '~/pages/SignIn';
-import SignUp from '~/pages/SignUp';
 
 import Students from '~/pages/Students';
 import StudentsRegistration from '~/pages/StudentsRegistration';
 
 import Plans from '~/pages/Plans';
 import PlansRegistration from '~/pages/PlansRegistration';
-
-import Profile from '~/pages/Profile';
 
 import Enrolments from '~/pages/Enrolments';
 import EnrolmentsRegistration from '~/pages/EnrolmentsRegistration';
@@ -56,9 +53,6 @@ export default function Routes() {
       />
 
       <Route path="/help-orders" component={HelpOrders} isPrivate />
-
-      <Route path="/register" component={SignUp} />
-      <Route path="/profile" component={Profile} isPrivate />
     </Switch>
   );
 }

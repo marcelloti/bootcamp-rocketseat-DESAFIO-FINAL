@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { MdAdd } from 'react-icons/md';
 import api from '~/services/api';
-import {
-  Container,
-  PageTitle,
-  ActionDiv,
-  Header,
-  Content,
-  Table,
-} from './styles';
+import { Container, PageTitle, Header, Content, Table } from './styles';
 import ModalHelpOrder from '~/components/ModalHelpOrder';
 import { modalOpenRequest } from '~/store/modules/helporder/actions';
 
@@ -45,12 +37,6 @@ export default function HelpOrders() {
     <Container>
       <Header>
         <PageTitle>Pedidos de auxílio</PageTitle>
-        <ActionDiv>
-          <button type="button">
-            <MdAdd color="#fff" size={20} />
-            CADASTRAR
-          </button>
-        </ActionDiv>
       </Header>
       <div>
         <Content>

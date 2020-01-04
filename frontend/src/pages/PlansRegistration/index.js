@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
@@ -34,6 +34,18 @@ export default function PlansRegistration() {
   const dispatch = useDispatch();
   const planData = useSelector(state => state.plan.planData);
 
+  const [pageTitle, setPageTitle] = React.useState('Edição de plano');
+
+  const loadTitle = useCallback(async () => {
+    if (planData === null || typeof planData.id === 'undefined') {
+      setPageTitle('Cadastro de plano');
+    }
+  }, [planData]);
+
+  useState(() => {
+    loadTitle();
+  }, []);
+
   const [duration, setDuration] = useState(planData.duration || 1);
   const [monthPrice, setMonthPrice] = useState(planData.price || 1);
   const [totalPrice, setTotalPrice] = useState(duration * monthPrice);
@@ -50,23 +62,23 @@ export default function PlansRegistration() {
     document.getElementById('submitButton').click();
   }
 
-  function handleSubmit({ title, duration, price }) {
+  function handleSubmit({ title, duration: newDuration, price }) {
     // Create action
-    if (planData === null || planData.id === 'undefined') {
-      dispatch(planCreateRequest({ title, duration, price }));
+    if (planData === null || typeof planData.id === 'undefined') {
+      dispatch(planCreateRequest({ title, duration: newDuration, price }));
     }
 
     // Update action
     else {
       const { id } = planData;
-      dispatch(planUpdateRequest({ id, title, duration, price }));
+      dispatch(planUpdateRequest({ id, title, duration: newDuration, price }));
     }
   }
 
   return (
     <Container>
       <Header>
-        <PageTitle>Cadastro de plano</PageTitle>
+        <PageTitle>{pageTitle}</PageTitle>
         <ActionDiv>
           <button
             className="voltarBtn"

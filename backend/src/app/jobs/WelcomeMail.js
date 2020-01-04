@@ -1,5 +1,3 @@
-import { format, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt';
 import Mail from '../../lib/Mail';
 
 class WelcomeMail {
@@ -17,22 +15,22 @@ class WelcomeMail {
       price,
     } = data;
 
-    await Mail.sendMail({
-      to: studentEmail,
-      subject: `Matrícula concluída`,
-      template: 'welcome',
-      context: {
-        student: studentName,
-        title: planTitle,
-        start: format(parseISO(start_date), "'Dia' dd 'de' MMMM' de 'yyyy", {
-          locale: pt,
-        }),
-        end: format(parseISO(end_date), "'Dia' dd 'de' MMMM' de 'yyyy", {
-          locale: pt,
-        }),
-        price: price.toFixed(2),
-      },
-    });
+    try {
+      await Mail.sendMail({
+        to: `${studentName} <${studentEmail}>`,
+        subject: 'Matrícula registrada',
+        template: 'enrolment',
+        context: {
+          studentName,
+          start_date,
+          end_date,
+          planTitle,
+          price,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 

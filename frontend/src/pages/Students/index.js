@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { MdAdd } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import history from '~/services/history';
 import {
   studentCreateOpen,
@@ -19,20 +20,21 @@ import {
 
 export default function Students() {
   const dispatch = useDispatch();
-
-  async function loadStudents() {
-    const response = await api.get('students');
-    return response;
-  }
-
   const [filteredStudents, setfilteredStudents] = React.useState([]);
   const [students, setStudents] = React.useState([]);
 
+  const loadStudents = useCallback(async () => {
+    try {
+      const response = await api.get('students');
+      setStudents(response.data);
+      setfilteredStudents(response.data);
+    } catch (_) {
+      return toast.error('Erro ao carregar alunos');
+    }
+  }, []);
+
   useState(() => {
-    loadStudents().then(result => {
-      setStudents(result.data);
-      setfilteredStudents(result.data);
-    });
+    loadStudents();
   }, []);
 
   let searchTerm = '';
@@ -66,10 +68,7 @@ export default function Students() {
     );
     if (response === true) {
       await api.delete(`students/${student.id}`);
-      loadStudents().then(result => {
-        setStudents(result.data);
-        setfilteredStudents(result.data);
-      });
+      loadStudents();
     }
   }
 

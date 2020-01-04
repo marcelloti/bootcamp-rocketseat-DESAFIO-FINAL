@@ -4,7 +4,8 @@ import pt from 'date-fns/locale/pt';
 import Enrolment from '../models/Enrolment';
 import Student from '../models/Student';
 import Plan from '../models/Plan';
-import Mail from '../../lib/Mail';
+import Queue from '../../lib/Queue';
+import WelcomeMail from '../jobs/WelcomeMail';
 
 class EnrolmentController {
   async index(req, res) {
@@ -118,22 +119,25 @@ class EnrolmentController {
       price: totalPrice,
     });
 
-    // Sending mail (for now, without redis)
-    await Mail.sendMail({
+    const { format: formatPriceToBR } = new Intl.NumberFormat('ptBR', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+
+    await Queue.add(WelcomeMail.key, {
       to: `${studentExists.name} <${studentExists.email}>`,
       subject: 'Enrolment registered',
       template: 'enrolment',
-      context: {
-        student: studentExists.name,
-        start_date: format(parseISO(start_date), 'dd/MM/yyyy', {
-          locale: pt,
-        }),
-        end_date: format(parseISO(end_date), 'dd/MM/yyyy', {
-          locale: pt,
-        }),
-        plan: planExists.title,
-        price: enrolment.price,
-      },
+      studentName: studentExists.name,
+      studentEmail: studentExists.email,
+      start_date: format(parseISO(start_date), 'dd/MM/yyyy', {
+        locale: pt,
+      }),
+      end_date: format(parseISO(end_date), 'dd/MM/yyyy', {
+        locale: pt,
+      }),
+      planTitle: planExists.title,
+      price: formatPriceToBR(enrolment.price),
     });
 
     return res.json(enrolment);

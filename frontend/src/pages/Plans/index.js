@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import { MdAdd } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import api from '~/services/api';
 import { planCreateOpen, planUpdateOpen } from '~/store/modules/plan/actions';
 import history from '~/services/history';
@@ -17,6 +18,7 @@ import { formatPriceToBR } from '~/services/tools';
 
 export default function Plans() {
   const dispatch = useDispatch();
+  const [plans, setPlans] = React.useState([]);
 
   async function cadastrarBtn() {
     dispatch(planCreateOpen());
@@ -30,24 +32,24 @@ export default function Plans() {
     return `${duration} mês`;
   }
 
-  async function loadPlans() {
-    const response = await api.get('plans');
-
-    return response.data.map(plan => {
-      return {
-        ...plan,
-        priceFormatted: formatPriceToBR(plan.price),
-        durationText: getDurationText(plan.duration),
-      };
-    });
-  }
-
-  const [plans, setPlans] = React.useState([]);
+  const loadPlans = useCallback(async () => {
+    try {
+      const response = await api.get('plans');
+      const plansFormatted = response.data.map(plan => {
+        return {
+          ...plan,
+          priceFormatted: formatPriceToBR(plan.price),
+          durationText: getDurationText(plan.duration),
+        };
+      });
+      setPlans(plansFormatted);
+    } catch (_) {
+      return toast.error('Erro ao carregar os planos.');
+    }
+  }, []);
 
   useState(() => {
-    loadPlans().then(result => {
-      setPlans(result);
-    });
+    loadPlans();
   }, []);
 
   async function editarBtn({ id, title, duration, price }) {
@@ -61,9 +63,7 @@ export default function Plans() {
     );
     if (response === true) {
       await api.delete(`plans/${plan.id}`);
-      loadPlans().then(result => {
-        setPlans(result.data);
-      });
+      loadPlans();
     }
   }
 

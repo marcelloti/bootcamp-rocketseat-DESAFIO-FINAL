@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
-import searchImg from '~/assets/search-24px.png';
 
 export const Container = styled.div`
   max-width: 1100px;
@@ -31,42 +29,6 @@ export const Content = styled.div`
   border-radius: 4px;
   padding: 30px;
   background: #fff;
-`;
-
-export const ActionDiv = styled.div`
-  display: flex;
-
-  button {
-    display: flex;
-    border: 0;
-    background: #ee4d64;
-    color: #fff;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    width: 142px;
-    height: 36px;
-    padding: 10px;
-    border-radius: 3px;
-    align-items: center;
-    justify-content: space-around;
-    margin-right: 16px;
-
-    &:hover {
-      background: ${darken(0.03, '#EE4D64')};
-    }
-  }
-
-  input {
-    font-family: 'Roboto', sans-serif;
-    border-radius: 4px;
-    width: 237px;
-    height: 36px;
-    background: #fff url(${searchImg}) no-repeat 10px center;
-    padding-left: 32px;
-    border: 1px solid #ddd;
-    color: #999;
-  }
 `;
 
 export const PageTitle = styled.div`

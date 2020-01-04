@@ -44,6 +44,18 @@ export default function EnrolmentsRegistration() {
   const dispatch = useDispatch();
   const enrolmentData = useSelector(state => state.enrolment.enrolmentData);
 
+  const [pageTitle, setPageTitle] = React.useState('Edição de matrícula');
+
+  const loadTitle = useCallback(async () => {
+    if (enrolmentData === null || typeof enrolmentData.id === 'undefined') {
+      setPageTitle('Cadastro de matrícula');
+    }
+  }, [enrolmentData]);
+
+  useState(() => {
+    loadTitle();
+  }, []);
+
   function calcDuration(startDate, endDate) {
     if (startDate !== null && endDate !== null) {
       return differenceInMonths(parseISO(startDate), parseISO(endDate));
@@ -220,7 +232,7 @@ export default function EnrolmentsRegistration() {
   return (
     <Container>
       <Header>
-        <PageTitle>Cadastro de matrícula</PageTitle>
+        <PageTitle>{pageTitle}</PageTitle>
         <ActionDiv>
           <button
             className="voltarBtn"
