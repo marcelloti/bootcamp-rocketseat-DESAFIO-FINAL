@@ -128,6 +128,7 @@ class EnrolmentController {
       to: `${studentExists.name} <${studentExists.email}>`,
       subject: 'Enrolment registered',
       template: 'enrolment',
+      studentId: studentExists.id,
       studentName: studentExists.name,
       studentEmail: studentExists.email,
       start_date: format(parseISO(start_date), 'dd/MM/yyyy', {

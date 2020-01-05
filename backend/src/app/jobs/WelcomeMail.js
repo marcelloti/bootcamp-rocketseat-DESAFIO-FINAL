@@ -7,6 +7,7 @@ class WelcomeMail {
 
   async handle({ data }) {
     const {
+      studentId,
       studentName,
       studentEmail,
       start_date,
@@ -20,6 +21,7 @@ class WelcomeMail {
       subject: 'Matrícula registrada',
       template: 'enrolment',
       context: {
+        studentId,
         studentName,
         start_date,
         end_date,
