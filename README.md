@@ -15,12 +15,13 @@ Código do desafio final do bootcamp Rocketseat 2019
 1. NodeJS (Foi utilizada a versão 10.13.0 neste projeto)
 2. Nodemon instalado globalmente
 3. Docker / Docker-compose
-4. Ambiente react native configurado (<https://docs.rocketseat.dev/ambiente-react-native/introducao>)
-5. Conta no mailtrap (<https://mailtrap.io/>)
-6. Conta no sentry (https://sentry.io)
-7. yarn ou npm 
-8. Ambiente Linux (projeto desenvolvido no Debian)
-9. Celular com Android (O projeto mobile foi desenvolvido APENAS para este sistema)
+4. React instalado na máquina (create-react-app)
+5. Ambiente react native configurado (<https://docs.rocketseat.dev/ambiente-react-native/introducao>)
+6. Conta no mailtrap (<https://mailtrap.io/>)
+7. Conta no sentry (https://sentry.io)
+8. yarn ou npm 
+9. Ambiente Linux (projeto desenvolvido no Debian)
+10. Celular com Android (O projeto mobile foi desenvolvido APENAS para este sistema)
 ----
                 
 # Instruções
@@ -57,7 +58,6 @@ $ vim .env
 
 ## 5. Executar as migrations e seeders do backend
 ```
-$ cd ../backend
 $ yarn sequelize db:migrate
 $ yarn sequelize db:seed:all
 
@@ -108,7 +108,7 @@ $ yarn start
 
 ```
 
-Em outro terminal (dentro do diretório mobile do projeto), como um celular Android conectado à porta USB,  execute o seguinte comando para instalar o app:
+Em outro terminal (dentro do diretório mobile do projeto) e com um celular Android conectado à porta USB, execute o seguinte comando para instalar o app:
 ```
 $ yarn android
 ```
@@ -117,8 +117,9 @@ $ yarn android
 
 Em algumas rotas (tanto no web quanto no mobile) a listagem de registros
 não é atualizada quando a rota/tela é acessada, mas apenas quando
-algum evento ocorre (create/update/delete). Exemplo: Se um um novo pedido de
+algum evento ocorre (create/update/delete). Exemplo: Se um novo pedido de
 auxílio é respondido no app da web, o app mobile só irá exibir a resposta
 na próxima vez que for aberto.
 Isto foi feito para exemplificar o uso da arquetura Flux/Redux com os stores/states
-e este mecanismo poderá ser melhorado em futuras versões.
+e este mecanismo poderá ser melhorado em futuras versões (com o uso de algum 
+componente interceptador de navegação ou até mesmo WebSockets).
