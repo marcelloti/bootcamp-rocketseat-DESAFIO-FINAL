@@ -120,7 +120,9 @@ function HelpOrdersList({ navigation }) {
                   <HelpOrderTime>{item.formattedTime}</HelpOrderTime>
                 </HelpOrderTitle>
                 <HelpOrderQuestion>
-                  <HelpOrderQuestionText>{item.question}</HelpOrderQuestionText>
+                  <HelpOrderQuestionText numberOfLines={3}>
+                    {item.question}
+                  </HelpOrderQuestionText>
                 </HelpOrderQuestion>
               </TouchableOpacity>
             </HelpOrderContainer>
