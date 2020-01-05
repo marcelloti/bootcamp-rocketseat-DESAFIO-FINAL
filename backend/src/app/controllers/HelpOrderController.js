@@ -68,7 +68,7 @@ class HelpOrderController {
     const helpOrders = await HelpOrder.findAll({
       attributes: ['id', 'question', 'answer', 'created_at'],
       where: { student_id: id },
-      order: ['created_at'],
+      order: [['created_at', 'DESC']],
     });
 
     if (!helpOrders) {
