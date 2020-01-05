@@ -89,7 +89,9 @@ $ yarn start
 
 ## 9. Modifique o IP do Reactotron
 Caso queira usar o Reactotron nos testes, modifique o IP nos arquivos:
+
     /mobile/src/config/ReactotronConfig.js
+    
     /frontend/src/config/ReactotronConfig.js
     
 ## 10. Modifique o IP do backend para o serviço do mobile e inicialize o serviço
