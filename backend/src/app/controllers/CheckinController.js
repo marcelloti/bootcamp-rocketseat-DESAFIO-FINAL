@@ -79,7 +79,7 @@ class CheckinController {
     });
 
     if (checkins.length >= 5) {
-      return res.status(400).json({ error: 'Too much checkins in 7 days' });
+      return res.status(400).json({ error: 'Excesso de check-in em 7 dias' });
     }
 
     const checkin = await Checkin.create({

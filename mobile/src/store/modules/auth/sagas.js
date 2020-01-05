@@ -17,7 +17,7 @@ export function* signIn({ payload }) {
     if (typeof err.response.data.error === 'string') {
       errorMsg = err.response.data.error;
     }
-    Alert.alert('Falha no login/checkin', errorMsg);
+    Alert.alert('Falha no login', errorMsg);
 
     yield put(signFailure());
   }
