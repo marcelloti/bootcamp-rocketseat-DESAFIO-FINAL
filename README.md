@@ -121,4 +121,5 @@ algum evento ocorre (create/update/delete). Exemplo: Se um novo pedido de
 auxílio é respondido no app da web, o app mobile só irá exibir a resposta
 na próxima vez que for aberto.
 Isto foi feito para exemplificar o uso da arquetura Flux/Redux com os stores/states
-e este mecanismo poderá ser melhorado em futuras versões.
+e este mecanismo poderá ser melhorado em futuras versões (com o uso de algum 
+componente interceptador de navegação ou até mesmo WebSockets).
