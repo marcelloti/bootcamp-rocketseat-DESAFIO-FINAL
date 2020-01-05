@@ -25,6 +25,7 @@ export default function SignIn() {
         <Image source={logo} />
         <Form>
           <FormInput
+            keyboardType="number-pad"
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Informe seu ID de cadastro"
