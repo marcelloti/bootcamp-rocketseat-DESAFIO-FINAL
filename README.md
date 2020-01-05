@@ -118,5 +118,5 @@ $ yarn android
 Em algumas rotas (tanto no web quanto no mobile) a listagem de registros
 não é atualizada quando a rota/tela é acessada, mas apenas quando
 algum evento ocorre (update/edição). Exemplo: Se um um novo pedido de
-auxílio é respondido no app da web, o app mobile só exibir a resposta
+auxílio é respondido no app da web, o app mobile só irá exibir a resposta
 na próxima vez que for aberto.
