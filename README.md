@@ -51,7 +51,7 @@ $ yarn
 ## 4. Criar aquivo **.env** baseado no arquivo **.env-example** na pasta backend e preenchê-lo de acordo
 ```
 $ cd ../backend 
-$ cp .env.example .env
+$ cp .env-example .env
 $ vim .env
 ```
 
