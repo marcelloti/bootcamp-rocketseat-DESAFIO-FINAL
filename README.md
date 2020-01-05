@@ -17,9 +17,10 @@ Código do desafio final do bootcamp Rocketseat 2019
 3. Docker / Docker-compose
 4. Ambiente react native configurado (<https://docs.rocketseat.dev/ambiente-react-native/introducao>)
 5. Conta no mailtrap (<https://mailtrap.io/>)
-6. yarn ou npm 
-7. Ambiente Linux (projeto desenvolvido no Debian)
-8. Celular com Android (O projeto mobile foi desenvolvido APENAS para este sistema)
+6. Conta no sentry (https://sentry.io)
+7. yarn ou npm 
+8. Ambiente Linux (projeto desenvolvido no Debian)
+9. Celular com Android (O projeto mobile foi desenvolvido APENAS para este sistema)
 ----
                 
 # Intruções
