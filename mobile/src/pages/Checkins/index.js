@@ -35,10 +35,10 @@ function Checkins() {
   const studentid = useSelector(state => state.auth.studentid);
 
   const loadCheckIns = useCallback(async () => {
-    let checkInNumber = 0;
     let response = await api.get(`students/${studentid}/checkins`);
+    let checkInNumber = response.data.length + 1;
     response = response.data.map(checkin => {
-      checkInNumber += 1;
+      checkInNumber -= 1;
 
       const retorno = {
         ...checkin,
