@@ -15,12 +15,13 @@ Código do desafio final do bootcamp Rocketseat 2019
 1. NodeJS (Foi utilizada a versão 10.13.0 neste projeto)
 2. Nodemon instalado globalmente
 3. Docker / Docker-compose
-4. Ambiente react native configurado (<https://docs.rocketseat.dev/ambiente-react-native/introducao>)
-5. Conta no mailtrap (<https://mailtrap.io/>)
-6. Conta no sentry (https://sentry.io)
-7. yarn ou npm 
-8. Ambiente Linux (projeto desenvolvido no Debian)
-9. Celular com Android (O projeto mobile foi desenvolvido APENAS para este sistema)
+4. React instalado na máquina (create-react-app)
+5. Ambiente react native configurado (<https://docs.rocketseat.dev/ambiente-react-native/introducao>)
+6. Conta no mailtrap (<https://mailtrap.io/>)
+7. Conta no sentry (https://sentry.io)
+8. yarn ou npm 
+9. Ambiente Linux (projeto desenvolvido no Debian)
+10. Celular com Android (O projeto mobile foi desenvolvido APENAS para este sistema)
 ----
                 
 # Instruções
