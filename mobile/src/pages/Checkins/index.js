@@ -35,10 +35,14 @@ function Checkins() {
   const studentid = useSelector(state => state.auth.studentid);
 
   const loadCheckIns = useCallback(async () => {
+    let checkInNumber = 0;
     let response = await api.get(`students/${studentid}/checkins`);
     response = response.data.map(checkin => {
+      checkInNumber += 1;
+
       const retorno = {
         ...checkin,
+        checkInNumber,
         formattedTime: formatRelative(
           parseISO(checkin.created_at),
           new Date(),
@@ -83,7 +87,7 @@ function Checkins() {
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
             <CheckinCell>
-              <CheckTitle>Check-in #{item.id}</CheckTitle>
+              <CheckTitle>Check-in #{item.checkInNumber}</CheckTitle>
               <CheckTime>{item.formattedTime}</CheckTime>
             </CheckinCell>
           )}
