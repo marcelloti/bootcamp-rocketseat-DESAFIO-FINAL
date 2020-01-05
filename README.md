@@ -108,7 +108,7 @@ $ yarn start
 
 ```
 
-Em outro terminal (dentro do diretório mobile do projeto), como um celular Android conectado à porta USB,  execute o seguinte comando para instalar o app:
+Em outro terminal (dentro do diretório mobile do projeto) e com um celular Android conectado à porta USB, execute o seguinte comando para instalar o app:
 ```
 $ yarn android
 ```
