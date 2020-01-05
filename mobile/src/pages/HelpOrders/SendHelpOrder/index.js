@@ -44,6 +44,7 @@ function SendHelpOrder({ navigation }) {
             textAlignVertical="top"
             placeholder="Inclua seu pedido de auxílio"
             onChangeText={setQuestion}
+            maxLength={250}
           />
           <HelpOrderSendButton onPress={handleSubmit}>
             Enviar pedido
