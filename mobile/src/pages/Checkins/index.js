@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector /* , useDispatch */ } from 'react-redux';
-import { Image } from 'react-native';
+import { Image, Alert } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import { parseISO, formatRelative } from 'date-fns';
 import pt from 'date-fns/locale/pt';
@@ -60,8 +60,16 @@ function Checkins() {
   }, [loadCheckIns, studentid]);
 
   async function newCheckIn() {
-    await api.post(`/students/${studentid}/checkins`);
-    loadCheckIns();
+    try {
+      await api.post(`/students/${studentid}/checkins`);
+      loadCheckIns();
+    } catch (err) {
+      let errorMsg = 'Um erro desconhecido ocorreu';
+      if (typeof err.response.data.error === 'string') {
+        errorMsg = err.response.data.error;
+      }
+      Alert.alert('Falha no checkin', errorMsg);
+    }
   }
 
   return (
