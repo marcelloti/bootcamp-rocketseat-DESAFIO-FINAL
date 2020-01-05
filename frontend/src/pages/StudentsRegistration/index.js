@@ -107,11 +107,17 @@ export default function StudentsRegistration() {
             <StudentData>
               <div>
                 <label>NOME COMPLETO</label>
-                <Input type="text" name="name" placeholder="John Doe" />
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="John Doe"
+                  maxLength={80}
+                />
                 <label>ENDEREÇO DE E-MAIL</label>
                 <Input
                   type="mail"
                   name="email"
+                  maxLength={80}
                   placeholder="exemplo@email.com"
                 />
               </div>
@@ -120,17 +126,17 @@ export default function StudentsRegistration() {
             <StudentData>
               <div>
                 <label>IDADE</label>
-                <Input type="text" name="age" />
+                <Input type="text" name="age" maxLength={3} />
               </div>
 
               <div>
                 <label>PESO (em kg)</label>
-                <Input type="text" name="weight" />
+                <Input type="text" name="weight" maxLength={6} />
               </div>
 
               <div>
                 <label>ALTURA</label>
-                <Input type="text" name="height" />
+                <Input type="text" name="height" maxLength={4} />
               </div>
             </StudentData>
 
