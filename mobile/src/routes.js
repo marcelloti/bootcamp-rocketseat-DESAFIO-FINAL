@@ -4,12 +4,27 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+import PropTypes from 'prop-types';
 import SignIn from './pages/SignIn';
 import Checkins from './pages/Checkins';
 import HelpOrderList from './pages/HelpOrders/HelpOrderList';
 import HelpOrderInfo from './pages/HelpOrders/HelpOrderInfo';
 import SendHelpOrder from './pages/HelpOrders/SendHelpOrder';
+
+const helpOrderIcon = ({ tintColor }) => (
+  <Icon name="live-help" size={20} color={tintColor} />
+);
+
+const appIcon = ({ tintColor }) => (
+  <Icon name="edit-location" size={20} color={tintColor} />
+);
+
+helpOrderIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
+appIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
 
 export default (signedIn = false) =>
   createAppContainer(
@@ -28,9 +43,7 @@ export default (signedIn = false) =>
                 headerLayoutPreset: 'center',
                 tabBarVisible: true,
                 tabBarLabel: 'CheckIns',
-                tabBarIcon: ({ tintColor }) => (
-                  <Icon name="edit-location" size={20} color={tintColor} />
-                ),
+                tabBarIcon: appIcon,
               },
             },
             HelpOrdersSession: {
@@ -42,9 +55,7 @@ export default (signedIn = false) =>
               navigationOptions: {
                 tabBarVisible: true,
                 tabBarLabel: 'Pedir ajuda',
-                tabBarIcon: ({ tintColor }) => (
-                  <Icon name="live-help" size={20} color={tintColor} />
-                ),
+                tabBarIcon: helpOrderIcon,
               },
             },
           },
