@@ -58,7 +58,6 @@ $ vim .env
 
 ## 5. Executar as migrations e seeders do backend
 ```
-$ cd ../backend
 $ yarn sequelize db:migrate
 $ yarn sequelize db:seed:all
 
