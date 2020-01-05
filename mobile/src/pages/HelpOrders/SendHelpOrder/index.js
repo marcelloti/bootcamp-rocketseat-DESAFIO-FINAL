@@ -1,9 +1,11 @@
-import React, { useCallback, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
 import { withNavigationFocus } from 'react-navigation';
 import { Alert } from 'react-native';
 import Background from '~/components/Background';
 import api from '~/services/api';
+import { reloadRequest } from '~/store/modules/helporder/actions';
 
 import {
   Container,
@@ -13,6 +15,7 @@ import {
 } from './styles';
 
 function SendHelpOrder({ navigation }) {
+  const dispatch = useDispatch();
   const [question, setQuestion] = useState();
   const studentid = useSelector(state => state.auth.studentid);
 
@@ -21,6 +24,7 @@ function SendHelpOrder({ navigation }) {
       await api.post(`/students/${studentid}/help-orders`, {
         question,
       });
+      await dispatch(reloadRequest(studentid));
 
       Alert.alert('Confirmação', 'Seu pedido de auxílio foi registrado');
 

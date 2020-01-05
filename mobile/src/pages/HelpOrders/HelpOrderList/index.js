@@ -5,11 +5,9 @@ import { withNavigationFocus } from 'react-navigation';
 import { parseISO, formatRelative } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { TouchableOpacity, Image } from 'react-native';
-import api from '~/services/api';
-import { signOut, signInRequest } from '~/store/modules/auth/actions';
 import Background from '~/components/Background';
 import logoHeader from '~/assets/logo-header.png';
-
+import { reloadRequest } from '~/store/modules/helporder/actions';
 import {
   Container,
   HelpOrderContainer,
@@ -26,15 +24,19 @@ import {
 
 function HelpOrdersList({ navigation }) {
   const dispatch = useDispatch();
+  const helpOrdersLoaded = useSelector(state => state.helporder.helpOrderList);
+
   const [helpOrders, setHelpOrders] = useState([]);
+
   const studentid = useSelector(state => state.auth.studentid);
 
-  /*
-  function handleLogout() {
-    dispatch(signOut());
+  async function requestHelpOrderList() {
+    await dispatch(reloadRequest(studentid));
   }
-  handleLogout();
-  */
+
+  if (typeof helpOrdersLoaded === 'undefined' || helpOrdersLoaded === '') {
+    requestHelpOrderList();
+  }
 
   function openResponse(helpOrder) {
     navigation.navigate('HelpOrderInfo', {
@@ -50,31 +52,33 @@ function HelpOrdersList({ navigation }) {
     return responseStatus;
   }, []);
 
-  const loadHelpOrders = useCallback(async () => {
-    const response = await api.get(`students/${studentid}/help-orders`);
-    const helpordersArray = response.data.map(helporder => {
-      const helpOrderFormatted = {
-        ...helporder,
-        formattedStatus: formatStatus(helporder),
-        formattedTime: formatRelative(
-          parseISO(helporder.created_at),
-          new Date(),
-          {
-            locale: pt,
-            addSuffix: true,
-          }
-        ),
-      };
+  const formatHelpOrders = useCallback(async () => {
+    let helpordersArray = [];
+    if (Array.isArray(helpOrdersLoaded)) {
+      helpordersArray = helpOrdersLoaded.map(helporder => {
+        const helpOrderFormatted = {
+          ...helporder,
+          formattedStatus: formatStatus(helporder),
+          formattedTime: formatRelative(
+            parseISO(helporder.created_at),
+            new Date(),
+            {
+              locale: pt,
+              addSuffix: true,
+            }
+          ),
+        };
 
-      return helpOrderFormatted;
-    });
+        return helpOrderFormatted;
+      });
+    }
 
     setHelpOrders(helpordersArray);
-  }, [formatStatus, studentid]);
+  }, [formatStatus, helpOrdersLoaded]);
 
   useEffect(() => {
-    loadHelpOrders();
-  }, [loadHelpOrders, studentid]);
+    formatHelpOrders();
+  }, [formatHelpOrders, helpOrdersLoaded]);
 
   async function sendHelpOrderPage() {
     navigation.navigate('SendHelpOrder', {
