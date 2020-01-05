@@ -117,6 +117,8 @@ $ yarn android
 
 Em algumas rotas (tanto no web quanto no mobile) a listagem de registros
 não é atualizada quando a rota/tela é acessada, mas apenas quando
-algum evento ocorre (update/edição). Exemplo: Se um um novo pedido de
+algum evento ocorre (create/update/delete). Exemplo: Se um um novo pedido de
 auxílio é respondido no app da web, o app mobile só irá exibir a resposta
 na próxima vez que for aberto.
+Isto foi feito para exemplificar o uso da arquetura Flux/Redux com os stores/states
+e este mecanismo poderá ser melhorado em futuras versões.
