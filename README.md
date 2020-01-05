@@ -93,7 +93,9 @@ Caso queira usar o Reactotron nos testes, modifique o IP nos arquivos:
     
 ## 10. Modifique o IP do backend para o serviço do mobile e inicialize o serviço
 Edite os seguintes arquivos, colocando o IP da máquina que está rodando a api do backend:
+
     /mobile/src/services/api.js (exemplo de preenchimento: http://192.168.0.1:3333)
+    
     /frontend/src/services/api.js (neste arquivo também o possível deixar como está, mantendo http://localhost:3333)
 
 Em seguida, no diretório mobile, execute:
