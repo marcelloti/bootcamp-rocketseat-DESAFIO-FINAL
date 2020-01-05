@@ -23,7 +23,7 @@ Código do desafio final do bootcamp Rocketseat 2019
 9. Celular com Android (O projeto mobile foi desenvolvido APENAS para este sistema)
 ----
                 
-# Intruções
+# Instruções
 ## 1. Clonar repositório
 
 ```
