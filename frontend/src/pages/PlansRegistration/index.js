@@ -48,10 +48,10 @@ export default function PlansRegistration() {
 
   const [duration, setDuration] = useState(planData.duration || 1);
   const [monthPrice, setMonthPrice] = useState(planData.price || 1);
-  const [totalPrice, setTotalPrice] = useState(duration * monthPrice);
+  const [totalPrice, setTotalPrice] = useState((duration * monthPrice).toFixed(2));
 
   useEffect(() => {
-    setTotalPrice(monthPrice * duration);
+    setTotalPrice((monthPrice * duration).toFixed(2));
   }, [duration, monthPrice]);
 
   function voltarBtn() {
