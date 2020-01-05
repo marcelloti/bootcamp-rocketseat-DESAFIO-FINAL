@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector /* , useDispatch */ } from 'react-redux';
 import { withNavigationFocus } from 'react-navigation';
 import { parseISO, formatRelative } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { Image } from 'react-native';
 import api from '~/services/api';
-import { signInRequest /* , signOut */ } from '~/store/modules/auth/actions';
+/* import {  signOut } from '~/store/modules/auth/actions'; */
 import Background from '~/components/Background';
 import logoHeader from '~/assets/logo-header.png';
 
@@ -20,11 +20,10 @@ import {
 } from './styles';
 
 function Checkins() {
-  const dispatch = useDispatch();
-
   /*
-  Enable this and the signOut action on imports to app logout
+  Enable this , useDispatch and the signOut action on imports to app logout
 
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(signOut());
   }, [dispatch]);
@@ -59,7 +58,7 @@ function Checkins() {
   }, [loadCheckIns, studentid]);
 
   async function newCheckIn() {
-    await dispatch(signInRequest(studentid));
+    await api.post(`/students/${studentid}/checkins`);
     loadCheckIns();
   }
 
