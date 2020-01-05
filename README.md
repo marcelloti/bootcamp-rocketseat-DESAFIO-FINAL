@@ -19,6 +19,7 @@ Código do desafio final do bootcamp Rocketseat 2019
 5. Conta no mailtrap (<https://mailtrap.io/>)
 6. yarn ou npm 
 7. Ambiente Linux (projeto desenvolvido no Debian)
+8. Celular com Android (O projeto mobile foi desenvolvido APENAS para este sistema)
 ----
                 
 # Intruções
@@ -85,9 +86,15 @@ $ yarn start
     Usuário: admin@gympoint.com
     Senha: 123456789
 
-## 9. Modifique o IP do backend para o serviço do mobile e inicialize o serviço
-Em outro terminal (dentro do diretório mobile do projeto), edite o arquivo
-"src/services/api.js" colocando o IP da máquina que está rodando a api do backend.
+## 9. Modifique o IP do Reactotron
+Caso queira usar o Reactotron nos testes, modifique o IP nos arquivos:
+    /mobile/src/config/ReactotronConfig.js
+    /frontend/src/config/ReactotronConfig.js
+    
+## 10. Modifique o IP do backend para o serviço do mobile e inicialize o serviço
+Edite os seguintes arquivos, colocando o IP da máquina que está rodando a api do backend:
+    /mobile/src/services/api.js (exemplo de preenchimento: http://192.168.0.1:3333)
+    /frontend/src/services/api.js (neste arquivo também o possível deixar como está, mantendo http://localhost:3333)
 
 Em seguida, no diretório mobile, execute:
     

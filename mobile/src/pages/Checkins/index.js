@@ -5,7 +5,7 @@ import { parseISO, formatRelative } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { Image } from 'react-native';
 import api from '~/services/api';
-import { /* signOut, */ signInRequest } from '~/store/modules/auth/actions';
+import { signInRequest /* , signOut */ } from '~/store/modules/auth/actions';
 import Background from '~/components/Background';
 import logoHeader from '~/assets/logo-header.png';
 
@@ -21,15 +21,17 @@ import {
 
 function Checkins() {
   const dispatch = useDispatch();
-  const [checkins, setCheckins] = useState([]);
-  const studentid = useSelector(state => state.auth.studentid);
 
   /*
-  function handleLogout() {
+  Enable this and the signOut action on imports to app logout
+
+  useEffect(() => {
     dispatch(signOut());
-  }
-  handleLogout();
+  }, [dispatch]);
   */
+
+  const [checkins, setCheckins] = useState([]);
+  const studentid = useSelector(state => state.auth.studentid);
 
   const loadCheckIns = useCallback(async () => {
     let response = await api.get(`students/${studentid}/checkins`);

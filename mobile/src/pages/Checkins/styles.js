@@ -39,9 +39,3 @@ export const DivButton = styled.View`
 `;
 
 export const CheckInButton = styled(Button)``;
-
-export const CheckInButtonText = styled.Text`
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-`;

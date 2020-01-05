@@ -5,3 +5,9 @@ frontend/node_modules/
 mobile/node_modules/
 
 developer/redis /
+
+backend/.vscode/
+
+frontend/.vscode/
+
+mobile/.vscode/

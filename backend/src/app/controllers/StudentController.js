@@ -16,12 +16,11 @@ class StudentController {
     if (q) {
       const { Op } = Sequelize;
 
-      Student.findAll({
+      return Student.findAll({
         where: { name: { [Op.like]: `%${q}%` } },
       }).then(students => res.json(students));
-    } else {
-      Student.findAll().then(students => res.json(students));
     }
+    return Student.findAll().then(students => res.json(students));
   }
 
   async show(req, res) {

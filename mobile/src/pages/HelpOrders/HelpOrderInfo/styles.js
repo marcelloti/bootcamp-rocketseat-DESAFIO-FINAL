@@ -37,12 +37,6 @@ export const HelpOrderTime = styled.Text`
   color: #666;
 `;
 
-export const HelpOrderButtonText = styled.Text`
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-`;
-
 export const HelpOrderQuestion = styled.View`
   margin: 10px;
 `;

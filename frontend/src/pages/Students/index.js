@@ -63,6 +63,7 @@ export default function Students() {
   }
 
   async function apagarBtn(student) {
+    // eslint-disable-next-line no-alert
     const response = window.confirm(
       `Deseja realmente apagar o registro ${student.name} ?`
     );

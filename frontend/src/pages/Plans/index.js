@@ -42,7 +42,7 @@ export default function Plans() {
           durationText: getDurationText(plan.duration),
         };
       });
-      setPlans(plansFormatted);
+      return setPlans(plansFormatted);
     } catch (_) {
       return toast.error('Erro ao carregar os planos.');
     }
@@ -58,6 +58,7 @@ export default function Plans() {
   }
 
   async function apagarBtn(plan) {
+    // eslint-disable-next-line no-alert
     const response = window.confirm(
       `Deseja realmente apagar o registro ${plan.title} ?`
     );

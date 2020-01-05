@@ -5,6 +5,7 @@ import { withNavigationFocus } from 'react-navigation';
 import { parseISO, formatRelative } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { TouchableOpacity, Image } from 'react-native';
+import PropTypes from 'prop-types';
 import Background from '~/components/Background';
 import logoHeader from '~/assets/logo-header.png';
 import { reloadRequest } from '~/store/modules/helporder/actions';
@@ -132,5 +133,13 @@ function HelpOrdersList({ navigation }) {
 HelpOrdersList.navigationOptions = () => ({
   headerTitle: <Image resizeMode="center" source={logoHeader} />,
 });
+
+HelpOrdersList.propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.any),
+};
+
+HelpOrdersList.defaultProps = {
+  navigation: PropTypes.object,
+};
 
 export default withNavigationFocus(HelpOrdersList);

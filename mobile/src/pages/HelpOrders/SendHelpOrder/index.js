@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withNavigationFocus } from 'react-navigation';
 import { Alert } from 'react-native';
+import PropTypes from 'prop-types';
 import Background from '~/components/Background';
 import api from '~/services/api';
 import { reloadRequest } from '~/store/modules/helporder/actions';
-
 import {
   Container,
   HelpOrderContainer,
@@ -53,5 +53,13 @@ function SendHelpOrder({ navigation }) {
     </Background>
   );
 }
+
+SendHelpOrder.propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.any),
+};
+
+SendHelpOrder.defaultProps = {
+  navigation: PropTypes.object,
+};
 
 export default withNavigationFocus(SendHelpOrder);

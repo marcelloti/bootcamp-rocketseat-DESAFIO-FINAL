@@ -1,5 +1,6 @@
 import React from 'react';
 import { withNavigationFocus } from 'react-navigation';
+import PropTypes from 'prop-types';
 import Background from '~/components/Background';
 
 import {
@@ -43,5 +44,13 @@ function HelpOrderInfo({ navigation }) {
     </Background>
   );
 }
+
+HelpOrderInfo.propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.any),
+};
+
+HelpOrderInfo.defaultProps = {
+  navigation: PropTypes.object,
+};
 
 export default withNavigationFocus(HelpOrderInfo);

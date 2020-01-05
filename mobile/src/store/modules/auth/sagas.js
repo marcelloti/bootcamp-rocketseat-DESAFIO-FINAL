@@ -9,15 +9,13 @@ export function* signIn({ payload }) {
   try {
     const { studentid } = payload;
 
-    yield call(api.post, `students/${studentid}/checkins`);
+    yield call(api.post, `sessionStudent/${studentid}`);
 
     yield put(signInSuccess(studentid));
   } catch (err) {
-    let errorMsg = '';
-    if (err.response.data.error) {
+    let errorMsg = 'Um erro desconhecido ocorreu';
+    if (typeof err.response.data.error === 'string') {
       errorMsg = err.response.data.error;
-    } else {
-      errorMsg = 'Um erro desconhecido ocorreu';
     }
     Alert.alert('Falha no login/checkin', errorMsg);
 

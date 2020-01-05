@@ -142,8 +142,12 @@ export default function PlansRegistration() {
               </div>
             </PlanData>
 
-            {/* I know, this should not be here. However, I kept it for easy
-            submission of the form  */}
+            {/*
+               I know, this button should not be here. However, I kept for
+               easy form submission as it was not working to submit the form
+               via javascript with the submit method (Yup validations didn't
+               work with Form element of Unform)
+            */}
             <button id="submitButton" type="submit">
               Salvar
             </button>

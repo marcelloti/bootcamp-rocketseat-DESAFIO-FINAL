@@ -9,6 +9,7 @@ import PlanController from './app/controllers/PlanController';
 import EnrolmentController from './app/controllers/EnrolmentController';
 import CheckinController from './app/controllers/CheckinController';
 import HelpOrderController from './app/controllers/HelpOrderController';
+import SessionStudentController from './app/controllers/SessionStudentController';
 
 // Authentication Middlewares
 import authMiddleware from './app/middlewares/auth';
@@ -22,6 +23,9 @@ routes.get('/', (req, res) => {
 
 // Session Route
 routes.post('/sessions', SessionController.store);
+
+// Student Session
+routes.post('/sessionStudent/:id', SessionStudentController.show);
 
 // Checkins Routes
 routes.get('/students/:id/checkins', CheckinController.show);

@@ -78,6 +78,7 @@ export default function Enrolments() {
   }
 
   async function apagarBtn(enrolment) {
+    // eslint-disable-next-line no-alert
     const response = window.confirm(
       `Deseja realmente apagar o registro de ID ${enrolment.id} ?`
     );
