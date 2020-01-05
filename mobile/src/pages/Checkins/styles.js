@@ -38,4 +38,11 @@ export const DivButton = styled.View`
   padding: 20px 20px 0 20px;
 `;
 
+export const Header = styled.View`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
 export const CheckInButton = styled(Button)``;

@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector /* , useDispatch */ } from 'react-redux';
+import { Image } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import { parseISO, formatRelative } from 'date-fns';
 import pt from 'date-fns/locale/pt';
-import { Image } from 'react-native';
+
 import api from '~/services/api';
 /* import {  signOut } from '~/store/modules/auth/actions'; */
 import Background from '~/components/Background';
@@ -17,6 +18,7 @@ import {
   CheckTitle,
   CheckTime,
   List,
+  Header,
 } from './styles';
 
 function Checkins() {
@@ -84,7 +86,11 @@ function Checkins() {
 }
 
 Checkins.navigationOptions = {
-  headerTitle: <Image resizeMode="center" source={logoHeader} />,
+  headerTitle: () => (
+    <Header>
+      <Image resizeMode="contain" source={logoHeader} />
+    </Header>
+  ),
 };
 
 export default withNavigationFocus(Checkins);

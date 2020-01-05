@@ -11,6 +11,7 @@ import logoHeader from '~/assets/logo-header.png';
 import { reloadRequest } from '~/store/modules/helporder/actions';
 import {
   Container,
+  Header,
   HelpOrderContainer,
   HelpOrderButton,
   HelpOrderTitle,
@@ -131,7 +132,11 @@ function HelpOrdersList({ navigation }) {
 }
 
 HelpOrdersList.navigationOptions = () => ({
-  headerTitle: <Image resizeMode="center" source={logoHeader} />,
+  headerTitle: () => (
+    <Header>
+      <Image resizeMode="contain" source={logoHeader} />
+    </Header>
+  ),
 });
 
 HelpOrdersList.propTypes = {

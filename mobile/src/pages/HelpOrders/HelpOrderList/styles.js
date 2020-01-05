@@ -60,3 +60,10 @@ export const HelpOrderQuestionText = styled.Text`
   line-height: 22px;
   color: #666 !important;
 `;
+
+export const Header = styled.View`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
