@@ -48,7 +48,9 @@ export default function PlansRegistration() {
 
   const [duration, setDuration] = useState(planData.duration || 1);
   const [monthPrice, setMonthPrice] = useState(planData.price || 1);
-  const [totalPrice, setTotalPrice] = useState((duration * monthPrice).toFixed(2));
+  const [totalPrice, setTotalPrice] = useState(
+    (duration * monthPrice).toFixed(2)
+  );
 
   useEffect(() => {
     setTotalPrice((monthPrice * duration).toFixed(2));
@@ -109,7 +111,12 @@ export default function PlansRegistration() {
             <PlanData>
               <div>
                 <label>TÍTULO DO PLANO</label>
-                <Input type="text" name="title" placeholder="PLANO 1" />
+                <Input
+                  type="text"
+                  name="title"
+                  maxLength={40}
+                  placeholder="PLANO 1"
+                />
               </div>
             </PlanData>
 
@@ -120,6 +127,7 @@ export default function PlansRegistration() {
                   type="text"
                   name="duration"
                   placeholder="1"
+                  maxLength={6}
                   onChange={e => setDuration(e.target.value)}
                 />
               </div>
@@ -128,6 +136,7 @@ export default function PlansRegistration() {
                 <Input
                   type="text"
                   name="price"
+                  maxLength={8}
                   onChange={e => setMonthPrice(e.target.value)}
                 />
               </div>

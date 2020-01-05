@@ -58,4 +58,8 @@ export default createGlobalStyle`
        width: 100%;
      }
    }
+
+   .react-datepicker-wrapper{
+     width: 100%;
+   }
 `;
